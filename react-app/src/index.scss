@@ -1,0 +1,33 @@
+.app {
+  width: calc(100vw * 0.95);
+  height: calc(100vh * 0.95);
+
+  .area-chart {
+    fill: steelblue;
+    stroke: none;
+
+    .hover-section {
+      fill: transparent;
+      stroke: transparent;
+    }
+
+    &.selected {
+      fill: red;
+    }
+  }
+
+  .axes {
+    path,
+    line {
+      fill: none;
+      stroke: gray;
+    }
+
+    text {
+      text-rendering: optimizeLegibility;
+      font-size: .75rem;
+      fill: gray;
+      stroke: none;
+    }
+  }
+}
