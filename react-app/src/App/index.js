@@ -1,15 +1,34 @@
 import React, {useState} from 'react';
-import {randomLogNormal, randomNormal} from "d3-random";
 import Visualization from "./Visualization";
 
 const App = () => {
-    const [distributions, setDistributions] = useState([
-        {'id': 'normal', fn: randomNormal(.5, 1), isActive: true},
-        {'id': 'log-normal', fn: randomLogNormal(.5, 1), isActive: false}
-    ]);
+    const [incrementCount, setIncrementCount] = useState(5);
+    const [selectedItem, setSelectedItem] = useState(null);
+
+    const onChange = d => () => {
+        setSelectedItem(null);
+        setIncrementCount(d);
+    }
+
     return (
         <div className="app">
-            <Visualization distribution={distributions.find(d => d.isActive)}/>
+            <div className="form-group">
+                <p>Please select an increment count, in days, for hover:</p>
+                {[1, 2, 5, 10].map(d => {
+                    return (
+                        <div key={`increment-count-radio-${d}`}>
+                            <input type="radio"
+                                   name="increment-count"
+                                   value={d}
+                                   onChange={onChange(d)}
+                                   checked={incrementCount === d}/>
+                            {`${d} days`}
+                        </div>
+                    )
+                })}
+            </div>
+            <Visualization selectedItem={selectedItem} setSelectedItem={setSelectedItem}
+                           incrementCount={incrementCount}/>
         </div>
     );
 };

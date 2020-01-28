@@ -1,26 +1,23 @@
 import React, {useState} from 'react';
-import {ascending, descending, extent, max, range} from 'd3-array';
+import {extent, max, range} from 'd3-array';
 import {scaleLinear, scaleTime} from 'd3-scale';
 import moment from 'moment';
 import Axes from "./Axes";
 import AreaChart from "./AreaChart";
 
 const INCREMENT = 'days';
-const INCREMENT_COUNT = 1;
+const N = 150;
 
-const Visualization = ({distribution}) => {
-
-    // Handle the selected point
-    const [selectedItem, setSelectedItem] = useState(null);
+const Visualization = ({incrementCount, selectedItem, setSelectedItem}) => {
 
     // Set up some constant variables for the visualization
-    const width = 1000;
-    const height = 600;
+    const width = 960;
+    const height = 500;
     const margin = {
-        left: 40,
-        right: 40,
-        bottom: 40,
-        top: 40
+        left: 20,
+        right: 20,
+        bottom: 20,
+        top: 20
     };
 
     // Retrieve the inner height and width for which we will be drawing on
@@ -28,18 +25,13 @@ const Visualization = ({distribution}) => {
     const innerWidth = width - margin.left - margin.right;
 
     // Create a random sampling of data points, useState to ensure it isn't updated during re-renders
-    const [data, setData] = useState(
-        range(150)
-            .map(() => {
+    const [data] = useState(
+        range(N / incrementCount)
+            .map(i => {
                 return {
-                    y: distribution.fn()
+                    y: innerHeight / 2 + 150 * Math.sin(i / 5),
+                    x: moment().subtract(incrementCount * i, INCREMENT)
                 };
-            }).sort((a, b) => descending(a.y, b.y))
-            .map((d, i) => {
-                return {
-                    ...d,
-                    x: moment().subtract(INCREMENT_COUNT * i, INCREMENT)
-                }
             })
     );
 
@@ -52,23 +44,7 @@ const Visualization = ({distribution}) => {
         .domain([0, max(data, d => d.y)]);
 
     // Calculate the distance, in time, between points
-    const barWidth = xScale.range()[1] - xScale(moment(xScale.domain()[1]).subtract(INCREMENT_COUNT, INCREMENT));
-
-    // const updateData = () => {
-    //     setData(
-    //         range(150).map(d => {
-    //             return [
-    //                 xScale(dt),
-    //                 yScale(getTimeForYAxis(dt)),
-    //                 {
-    //                     id: d,
-    //                     name: `name-of-${d}`,
-    //                     r: markerRadius
-    //                 }
-    //             ];
-    //         })
-    //     )
-    // }
+    const barWidth = xScale.range()[1] - xScale(moment(xScale.domain()[1]).subtract(incrementCount, INCREMENT));
 
     return (
         <svg width={width} height={height}>
