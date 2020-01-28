@@ -11,6 +11,10 @@
       stroke: transparent;
     }
 
+    .area-mask {
+      fill: white;
+    }
+
     &.selected {
       fill: red;
     }

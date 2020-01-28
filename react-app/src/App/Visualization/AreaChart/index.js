@@ -11,7 +11,7 @@ const AreaChart = ({data, xScale, yScale, selectedItem, setSelectedItem, barWidt
         .y0(d => d.y0)
         .y1(d => d.y1);
 
-    const onMouseOver = item => evt => setSelectedItem(item);
+    const onMouseOver = item => () => setSelectedItem(item);
 
     return (
         <g className="area-chart">

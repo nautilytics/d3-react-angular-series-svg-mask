@@ -8,7 +8,7 @@ const App = () => {
     const onChange = d => () => {
         setSelectedItem(null);
         setIncrementCount(d);
-    }
+    };
 
     return (
         <div className="app">
