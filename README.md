@@ -6,7 +6,7 @@ An exploration of using an [SVG Mask](https://developer.mozilla.org/en-US/docs/W
 #### Angular
 
 ```bash
-cd angular
+cd angular-app
 npm install
 npm start
 ```
@@ -14,7 +14,7 @@ npm start
 #### React
 
 ```bash
-cd react
+cd react-app
 npm install # yarn
 npm start # yarn start
 ```
