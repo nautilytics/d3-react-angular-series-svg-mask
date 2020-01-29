@@ -2,14 +2,12 @@
   <div class="form-group">
     <p>Please select an increment count, in days, for hover:</p>
     <div *ngFor="let row of [1, 2, 5, 10]">
-      <div>
-        <input type="radio"
-               name="increment-count"
-               (change)="changeIncrementCount(row)"
-               [attr.value]="incrementCount"
-               [attr.checked]="incrementCount === row"/>
-        {{row}} days
-      </div>
+      <input type="radio"
+             name="increment-count"
+             (change)="changeIncrementCount(row)"
+             value="{{row}}"
+             [attr.checked]="incrementCount === row ? true: null"/>
+      {{row}} days
     </div>
     <app-visualization [incrementCount]="incrementCount"></app-visualization>
   </div>
