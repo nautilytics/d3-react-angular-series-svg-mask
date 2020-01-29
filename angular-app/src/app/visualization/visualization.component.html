@@ -1,1 +1,6 @@
-<p>visualization works!</p>
+<svg [attr.width.px]="width" [attr.height.px]="height">
+  <g [attr.transform]="gTransform">
+    <g app-area-chart [item]="formatAreaChartItem()"></g>
+    <g app-axes [item]="formatAxes()"></g>
+  </g>
+</svg>

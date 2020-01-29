@@ -1,0 +1,37 @@
+<svg:g class="area-chart">
+  <svg:defs>
+    <svg:mask
+      id='mask-for-area-chart'
+      maskUnits="userSpaceOnUse"
+      maskContentUnits="userSpaceOnUse"
+    >
+      <svg:g app-area [d]="getAreaPath()">
+      </svg:g>
+    </svg:mask>
+  </svg:defs>
+  <svg:rect
+    mask='url(#mask-for-area-chart)'
+    class="area-chart"
+    [attr.width.px]="item.width"
+    [attr.height.px]="item.height"
+  >
+  </svg:rect>
+  <svg:g class="hover-section">
+    <svg:g *ngFor="let row of item.data">
+      <svg:rect [attr.x.px]="row.x - item.barWidth"
+                (mouseover)="item.mouseOver(row)"
+                [attr.width.px]="item.barWidth"
+                [attr.height.px]="item.height">
+      </svg:rect>
+    </svg:g>
+  </svg:g>
+  <svg:g *ngIf="item.selectedItem">
+    <svg:rect
+      mask='url(#mask-for-area-chart)'
+      class="area-chart selected"
+      [attr.x.px]="item.selectedItem.x"
+      [attr.height.px]="item.height"
+      [attr.width.px]="item.barWidth"
+    />
+  </svg:g>
+</svg:g>
