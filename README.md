@@ -3,7 +3,7 @@
 
 An exploration of using an [SVG Mask](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/mask) for interactivity in a React/Angular & D3 visualization.
 
-![Screen Shot 2020-01-29 at 10 30 02 AM](https://user-images.githubusercontent.com/1707103/73372241-e1d26600-4284-11ea-9d19-855243c5db72.png)
+![d3-svg-mask-animation](https://user-images.githubusercontent.com/1707103/73376279-29f48700-428b-11ea-9b93-ab26ee4136c4.gif)
 
 #### Angular
 
