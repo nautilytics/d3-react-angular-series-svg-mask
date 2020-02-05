@@ -1,0 +1,19 @@
+name: Check build for new pull request
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.13.0
+      - name: Build React app
+        working-directory: ./react-app
+        run: |
+          yarn
+          yarn run build
