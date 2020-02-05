@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 12.13.0
       - name: Build React app
-        working-directory: .
+        working-directory: ./react-app
         run: |
           yarn
           yarn run build
